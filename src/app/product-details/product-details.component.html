@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        [src]="currentProduct?.images"
+        class="img-fluid rounded"
+        alt="{{ currentProduct?.title }}"
+        style="width: 100%; max-height: 500px; object-fit: cover"
+      />
+    </div>
+    <div class="col-md-6">
+      <div class="card border-0">
+        <div class="card-body">
+          @if(currentProduct?.stock === 0) {
+          <span class="badge text-bg-danger mb-3">Out Of Stock</span>
+          } @else {
+          <span class="badge text-bg-success mb-3">In Stock</span>
+          }
+          <h2 class="card-title">{{ currentProduct?.title }}</h2>
+          <p class="card-text text-muted">{{ currentProduct?.description }}</p>
+          <h4 class="text-primary">
+            Price:
+            <span class="text-decoration-line-through text-muted">
+              ${{ currentProduct?.price }}
+            </span>
+            <span class="ms-2 text-success">
+              ${{ currentProduct?.price | discount :currentProduct?.discountPercentage }}
+            </span>
+            <small class="text-danger ms-2">
+              ({{ currentProduct?.discountPercentage }}% off)
+            </small>
+          </h4>          
+          <p><strong>Rating:</strong> {{ currentProduct?.rating }} / 5</p>
+          <button class="btn btn-primary btn-lg mt-3">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

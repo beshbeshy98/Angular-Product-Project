@@ -1,0 +1,19 @@
+<div class="card h-100">
+    <img [src]="productItem.images[0]" class="card-img-top" alt="{{ productItem.title }}" style="width: 400px; height: 400px;"/>
+    <div class="card-body">
+        @if(productItem.stock  === 0){
+          <span class="badge text-bg-danger">Out Of Stock</span>        
+        }@else{
+            <span class="badge text-bg-success">In Stock</span>
+        }
+      <h5 class="card-title">{{ productItem.title }}</h5>
+      <p class="card-text">
+        <strong>Price:</strong> {{ productItem.price | currency:'EGP' }}
+      </p>
+      <p><strong>Rate:</strong> {{ productItem.rating }}</p>
+      <button class="btn btn-primary">Add to Cart</button>
+      <button type="button" class="btn btn-info mx-4" (click)="handleClick(productItem.id)">Info</button>
+
+    </div>
+  </div>
+  
