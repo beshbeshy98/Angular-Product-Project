@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
-import productsData from '../../products.json';
-import { ProductCardComponent } from "../product-card/product-card.component";
-import { Product } from '../types/product'
+import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductRequestService } from '../services/product-request.service';
 
 @Component({
   selector: 'app-products-list',
   imports: [ProductCardComponent],
   templateUrl: './products-list.component.html',
-  styleUrl: './products-list.component.css'
+  styleUrl: './products-list.component.css',
 })
 export class ProductsListComponent {
-  
-  products : Array<Product> = productsData.products; 
+  products: any;
+  constructor(private ProductRequestService: ProductRequestService) {}
+
+  ngOnInit() {
+    this.ProductRequestService.getAllProducts().subscribe(
+      (res: any) => (this.products = res.products)
+    );
+  }
 }

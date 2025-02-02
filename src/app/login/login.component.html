@@ -1,1 +1,49 @@
-<p>login works!</p>
+<form id="loginForm" #loginForm="ngForm" (ngSubmit)="handleLoginSubmit(loginForm)">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      required
+      [(ngModel)]="formValues.email"
+      pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+      #emailInput="ngModel"
+      name="email"
+    />
+    @if(emailInput.invalid && emailInput.touched || formSubmitted && passwordInput.invalid){
+    <div id="emailHelp" class="form-text text-danger">
+      @if(emailInput.hasError('required')){
+      <span>required</span>
+      }@else if (emailInput.hasError('pattern')) {
+      <span>Enter a Valid Email !</span>
+      }
+    </div>
+    }
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+      required
+      [(ngModel)]="formValues.password"
+      name="passwordInput"
+      #passwordInput="ngModel"
+    />
+  </div>
+  @if(passwordInput.invalid && passwordInput.touched || formSubmitted && passwordInput.invalid){
+    <div id="emailHelp" class="form-text text-danger">
+      @if(passwordInput.hasError('required')){
+      <span>required</span>
+      }
+    </div>
+    }
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

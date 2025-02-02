@@ -1,1 +1,42 @@
-<p>cart works!</p>
+<div class="cart-container">
+  @if(counter === 0){
+    <h5>Your Cart Is Empty !</h5>
+  }@else {
+    <h1>Cart</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Remove</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(item of cartItems; track item.id){
+        <tr>
+          <td>
+            <img [src]="item.images" alt="Product Image" class="product-img" />
+            <div>
+              <strong>{{ item.title }}</strong
+              ><br />
+            </div>
+          </td>
+          <td>
+            <div class="quantity-control">
+              <button (click)="increaseCounter(item)">+</button>
+              <p class="mx-3 my-0">{{ item.counter }}</p>
+              <button (click)="decreaseCounter(item)">-</button>
+            </div>
+          </td>
+          <td>
+            <button class="remove-btn" (click)="removeItem(item)">x</button>
+          </td>
+          <td>£{{ item.price }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+</div>

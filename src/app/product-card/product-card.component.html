@@ -11,7 +11,7 @@
         <strong>Price:</strong> {{ productItem.price | currency:'EGP' }}
       </p>
       <p><strong>Rate:</strong> {{ productItem.rating }}</p>
-      <button class="btn btn-primary">Add to Cart</button>
+      <button class="btn btn-primary" (click)="addToCart(productItem)">Add to Cart</button>
       <button type="button" class="btn btn-info mx-4" (click)="handleClick(productItem.id)">Info</button>
 
     </div>
